@@ -6,34 +6,46 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import "./InstrumentList.css";
 
 function InstrumentList(props) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Symbol</TableCell>
-            <TableCell align="right">Sector</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.instrumentItems.map((row) => (
-            <TableRow
-              key={row.Symbol}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <Link to={`/quotes/${row.Symbol}`}>{row.Name}</Link>
-              </TableCell>
-              <TableCell align="right">{row.Symbol}</TableCell>
-              <TableCell align="right">{row.Sector}</TableCell>
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <TableContainer sx={{ maxHeight: 550 }} className="table-container">
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Symbol</TableCell>
+              <TableCell>Sector</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {props.instrumentItems.map((row) => (
+              <TableRow
+                key={row.Symbol}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  <Link to={`/quotes/${row.Symbol}`}>{row.Name}</Link>
+                </TableCell>
+                <TableCell>{row.Symbol}</TableCell>
+                <TableCell>{row.Sector}</TableCell>
+              </TableRow>
+            ))}
+            {props.instrumentItems.length === 0 && (
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  No data found
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 }
 

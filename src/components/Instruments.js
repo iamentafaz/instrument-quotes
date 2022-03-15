@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
-import InstrumentItem from "./InstrumentItem";
+import React, { useCallback, useEffect, useState } from "react";
+import InstrumentItems from "./InstrumentItems";
 
 const Instruments = () => {
-  const [rows, setRows] = useState([]);
+  const [instruments, setRows] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  function fetchInstrument() {
+  const fetchInstrument = useCallback(() => {
+    setLoading(true);
     fetch("https://prototype.sbulltech.com/api/v2/instruments")
       .then((response) => {
         return response.text();
       })
       .then((data) => {
         const jsonData = csvJSON(data);
-        setRows((prevState) => {
-          return [...jsonData];
-        });
-      });
-  }
+        setRows(() =>  [...jsonData]);
+      }).catch((err) => {
+
+      }).
+      finally(() => {
+        setLoading(false);
+      })
+  },[])
   function csvJSON(csv) {
     var lines = csv.split("\n");
 
@@ -33,15 +38,14 @@ const Instruments = () => {
       result.push(obj);
     }
 
-    return result; //JavaScript object
-    // return JSON.stringify(result); //JSON
+    return result;
   }
   useEffect(() => {
     fetchInstrument();
-  }, []);
+  }, [fetchInstrument]);
   return (
     <>
-      <InstrumentItem instruments={rows} />
+      <InstrumentItems instruments={instruments} loader={loading} />
     </>
   );
 };

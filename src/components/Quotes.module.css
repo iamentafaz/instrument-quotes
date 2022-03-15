@@ -1,16 +1,28 @@
-table {
-  font-family: arial, sans-serif;
+.table {
   border-collapse: collapse;
   width: 100%;
 }
 
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
+.table td,
+.table th {
   padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #DDD;
 }
-
-tr:nth-child(even) {
-  background-color: #dddddd;
+.table tr:hover {background-color: #D6EEEE;}
+.tableWrapper {
+  background: #000;
+}
+.tableInner{
+  max-width: 850px;
+  margin: 0 auto;
+  height: calc(100vh - 40px);
+  padding-top: 40px;
+  width: 100%;
+}
+.tableContainer {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 1px 3px 2px #811a6f;
+  background: #fff;
 }

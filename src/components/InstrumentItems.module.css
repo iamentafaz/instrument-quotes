@@ -1,0 +1,9 @@
+.mainContainer {
+    background: #fcfcfc;
+    height: 100vh;
+}
+.tableContainer {
+    max-width: 950px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
