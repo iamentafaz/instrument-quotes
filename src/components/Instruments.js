@@ -36,9 +36,9 @@ const Instruments = () => {
     return result; //JavaScript object
     // return JSON.stringify(result); //JSON
   }
-  useEffect(()=> {
-      fetchInstrument();
-  }, [])
+  useEffect(() => {
+    fetchInstrument();
+  }, []);
   return (
     <>
       <InstrumentItem instruments={rows} />

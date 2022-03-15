@@ -23,7 +23,7 @@ const Quote = () => {
 
   useEffect(() => {
     fetchQuotes();
-  }, []);
+  });
 
   const tableInstance = useTable({
     columns: COLUMNS,
